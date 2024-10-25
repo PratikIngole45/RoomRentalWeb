@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Owner Details</h1>
+    </header>
+
+    <main>
+        <div id="owner-details" class="details-container"></div>
+        <button onclick="window.location.href='index.html'">Back to Listings</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Room Rental Website</p>
+    </footer>
+
+    <script>
+        function showOwnerInfo(name, email, contact, roomTitle, description) {
+            const details = document.getElementById('owner-details');
+            details.innerHTML = `
+                <h2>${roomTitle} by ${name}</h2>
+                <p>Description: ${description}</p>
+                <p>Contact: ${contact}</p>
+                <p>Email: ${email}</p>
+                <button onclick="bookRoom()">Book Room</button>
+                <button onclick="messageOwner()">Message Owner</button>
+            `;
+        }
+
+        function bookRoom() {
+            alert('Room booked successfully!');
+            window.location.href = 'index.html'; // Redirect to home
+        }
+
+        function messageOwner() {
+            const message = prompt('Enter your message for the owner:');
+            if (message) {
+                alert('Your message has been sent to the owner!');
+            }
+        }
+    </script>
+</body>
+</html>

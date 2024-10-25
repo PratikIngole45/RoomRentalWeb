@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to send feedback (this is a placeholder)
+        function sendFeedback() {
+            const feedbackMessage = document.getElementById('feedback-message').value;
+            // Add your feedback processing logic here (e.g., sending to a server)
+
+            alert("Feedback sent: " + feedbackMessage);
+            document.getElementById('feedback-message').value = ''; // Clear the textarea
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Feedback</h1>
+    </header>
+
+    <main>
+        <h2>Send Us Your Feedback</h2>
+        <textarea id="feedback-message" placeholder="Type your feedback here..."></textarea>
+        <button onclick="sendFeedback()">Send Feedback</button>
+        <button onclick="window.location.href='index.html?showHome=true'">Back to Home</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Room Rental Website</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Rental Website - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        // Function to show the home page with renter and owner options
+        function showUserType() {
+            document.getElementById('login').style.display = 'none'; // Hide login section
+            document.getElementById('home-page').style.display = 'block'; // Show home page
+        }
+    
+        // Function to handle page load and check for query parameters
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('showHome') === 'true') {
+                showUserType(); // Show the renter/owner options
+            }
+        };
+    </script>
+    <script>
+        // Show the home page (Renter/Owner options)
+        function showUserType() {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+        }
+
+        // Show renter listings
+        function selectRenter() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('renter-list').style.display = 'block';
+        }
+
+        // Show owner form
+        function selectOwner() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('owner-form').style.display = 'block';
+        }
+
+        // Redirect to the owner info page
+        function redirectToOwnerInfo(name, email, contact, roomTitle, description) {
+            const ownerInfo = {
+                name: name,
+                email: email,
+                contact: contact,
+                roomTitle: roomTitle,
+                description: description,
+            };
+            localStorage.setItem('ownerInfo', JSON.stringify(ownerInfo));
+            window.location.href = 'owner-info.html';
+        }
+
+        // Go back from the owner info page to the listings page
+        function goBackToListing() {
+            document.getElementById('owner-info').style.display = 'none';
+            document.getElementById('renter-list').style.display = 'block';  // Show listings
+        }
+
+        // Go back from listings or owner form to the home page (Renter/Owner selection)
+        function goBackToHome() {
+            document.getElementById('renter-list').style.display = 'none';  // Hide listings
+            document.getElementById('owner-form').style.display = 'none';  // Hide owner form
+            document.getElementById('home-page').style.display = 'block';  // Show home page
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Room Rental Website</h1>
+    </header>
+
+    <main>
+        <!-- Login Section -->
+        <section id="login">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form onsubmit="event.preventDefault(); showUserType();">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Home Page After Login -->
+        <section id="home-page" style="display: none;">
+            <h2>Welcome to the Room Rental Website</h2>
+            <div class="home-options">
+                <div class="option renter-option">
+                    <h3>Renter</h3>
+                    <p>Browse available rooms.</p>
+                    <button onclick="selectRenter()">View Rooms</button>
+                </div>
+                <div class="option owner-option">
+                    <h3>Owner</h3>
+                    <p>List your room for rent.</p>
+                    <button onclick="selectOwner()">List Your Room</button>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About Us</a> |
+                <a href="contact.html">Contact Us</a> |
+                <a href="feedback.html">Feedback</a>
+            </div>
+        </section>
+
+        <!-- Renter Listings Section -->
+        <section id="renter-list" style="display: none;">
+            <h2>Available Listings</h2>
+            <div class="listing">
+                <h3>Room by Raju</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('Raju', 'raju@example.com', '123-456-7890', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by Rohan</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('Rohan', 'rohan@example.com', '987-654-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by shubham</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('shubham', 'shubham@example.com', '098-456-7890', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by ramu</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('ramu', 'ramu@example.com', '987-213-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by sham</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('sham', 'sham@example.com', '123-456-987', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by tejas</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('tejas', 'tejas@example.com', '987-435-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by Joshi</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('Joshi', 'Joshi@example.com', '123-000-7890', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by Varma</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('Varma', 'Varma@example.com', '987-098-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <!-- More listings... -->
+
+            <!-- Back button to go to Home Page -->
+            <button onclick="goBackToHome()">Back</button>
+        </section>
+
+        <!-- Owner Form Section -->
+        <section id="owner-form" style="display: none;">
+            <div class="form-container">
+                <h2>Submit Your Room Information</h2>
+                
+                <form id="owner-form" onsubmit="submitRoomInfo(event);" action="connect.php" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Owner Details</legend>
+                        <label for="ownerName">Owner Name</label>
+                        <input type="text" id="ownerName" name="ownerName" placeholder="Enter your name" required>
+
+                        <label for="contactNumber">Contact Number</label>
+                        <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter contact number" required>
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Room Information</legend>
+                        <label for="roomTitle">Room Title</label>
+                        <input type="text" id="roomTitle" name="roomTitle" placeholder="Enter room title" required>
+
+                        <label for="roomDescription">Room Description</label>
+                        <textarea id="roomDescription" name="roomDescription" placeholder="Describe the room" required></textarea>
+
+                        <label for="roomPrice">Room Price</label>
+                        <input type="number" id="roomPrice" name="roomPrice" placeholder="Enter room price" required>
+
+                        <label for="roomImage">Room Image URL</label>
+                        <input type="text" id="roomImage" name="roomImage" placeholder="Enter image URL" required>
+
+                        <label for="roomUpload">Upload Room Image</label>
+                        <input type="file" id="roomUpload" name="roomUpload" accept="image/*" onchange="previewImage(event)">
+                        <img id="roomImagePreview" style="display:none; width: 100px; height: 100px; margin-top: 10px;" />
+                    </fieldset>
+
+                    <button type="submit">Submit</button>
+                </form>
+                <!-- Booking Form (displayed upon renter's decision to book) -->
+                <form id="booking-form" action="book_room.php" method="POST" style="display: none;">
+                        <input type="hidden" name="room_id" id="room_id">
+                        <label for="renter_name">Your Name:</label>
+                        <input type="text" id="renter_name" name="renter_name" required>
+                        <label for="renter_email">Your Email:</label>
+                        <input type="email" id="renter_email" name="renter_email" required>
+                    <button type="submit">Confirm Booking</button>
+                    </form>
+
+                <script>
+                    // Trigger the booking form
+                    function bookRoom(roomId) {
+                    document.getElementById("room_id").value = roomId; // Set room ID
+                    document.getElementById("booking-form").style.display = "block"; // Show form
+                    }
+                </script>
+
+
+                <div id="submitMessage" style="display: none; margin-top: 20px;">
+                    <p style="color: green;">Form submitted successfully!</p>
+                </div>
+
+                <!-- Back button to go to Home Page -->
+                <button onclick="goBackToHome()">Back</button>
+            </div>
+        </section>
+
+        <!-- Owner Info Section -->
+        <section id="owner-info" style="display: none;">
+            <h2>Owner Information</h2>
+            <p>Details about the room owner will go here.</p>
+
+            <!-- Back to Listing button -->
+           
+            <button onclick="goBackToHome()">Back</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Room Rental Website</p>
+    </footer>
+
+    <script>
+        // Handle room submission
+        function submitRoomInfo(event) {
+            event.preventDefault();  // Prevent default form submission behavior
+
+            // Get the form data
+            const ownerName = document.getElementById('ownerName').value;
+            const contactNumber = document.getElementById('contactNumber').value;
+            const email = document.getElementById('email').value;
+            const roomTitle = document.getElementById('roomTitle').value;
+            const roomDescription = document.getElementById('roomDescription').value;
+            const roomPrice = document.getElementById('roomPrice').value;
+            const roomImage = document.getElementById('roomImage').value;
+
+            // Build the query string
+            const queryString = `?ownerName=${encodeURIComponent(ownerName)}&contactNumber=${encodeURIComponent(contactNumber)}&email=${encodeURIComponent(email)}&roomTitle=${encodeURIComponent(roomTitle)}&roomDescription=${encodeURIComponent(roomDescription)}&roomPrice=${encodeURIComponent(roomPrice)}&roomImage=${encodeURIComponent(roomImage)}`;
+
+            // Redirect to the form-submitted.html page with the query string
+            window.location.href = "form-submitted.html" + queryString;
+        }
+
+        // Image preview function
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var preview = document.getElementById('roomImagePreview');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        
+    </script>
+</body>
+
+</html>

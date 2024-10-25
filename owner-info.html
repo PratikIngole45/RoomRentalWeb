@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Information</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    </script>
+    <script>
+        window.onload = function() {
+            const ownerInfo = JSON.parse(localStorage.getItem('ownerInfo'));
+            document.getElementById('owner-name').innerText = ownerInfo.name;
+            document.getElementById('owner-email').innerText = ownerInfo.email;
+            document.getElementById('owner-contact').innerText = ownerInfo.contact;
+            document.getElementById('room-title').innerText = ownerInfo.roomTitle;
+            document.getElementById('room-description').innerText = ownerInfo.description;
+        };
+
+        function bookRoom() {
+            alert('Room booked successfully!');
+            goBack(); // Redirect back to listings
+        }
+
+        function messageOwner() {
+            const message = prompt('Enter your message for the owner:');
+            if (message) {
+                alert('Your message has been sent to the owner!');
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+    
+</head>
+<body>
+    <header>
+        <h1>Owner Information</h1>
+    </header>
+
+    <main>
+        <div class="owner-details">
+            <h2 id="room-title"></h2>
+            <p><strong>Owner:</strong> <span id="owner-name"></span></p>
+            <p><strong>Email:</strong> <span id="owner-email"></span></p>
+            <p><strong>Contact:</strong> <span id="owner-contact"></span></p>
+            <p><strong>Description:</strong> <span id="room-description"></span></p>
+            <br>
+            <button onclick="bookRoom()">Book Room</button>
+            <br>
+            <button onclick="messageOwner()">Message Owner</button>
+            <br>
+            <!-- <button onclick="goBack()">Back to Listings</button> -->
+            <button onclick="goBackToHome()">Back to Listings</button>
+
+            <br>
+        </div>
+    </main>
+   
+
+    <footer>
+        <p>&copy; 2024 Room Rental Website</p>
+    </footer>
+</body>
+</html>

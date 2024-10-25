@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Rental Website - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function showUserType() {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+        }
+
+        function selectRenter() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('renter-list').style.display = 'block';
+        }
+
+        function selectOwner() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('owner-form').style.display = 'block';
+        }
+
+        function redirectToOwnerInfo(name, email, contact, roomTitle, description) {
+            const ownerInfo = {
+                name: name,
+                email: email,
+                contact: contact,
+                roomTitle: roomTitle,
+                description: description,
+            };
+            localStorage.setItem('ownerInfo', JSON.stringify(ownerInfo));
+            window.location.href = 'owner-info.html';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Room Rental Website</h1>
+    </header>
+
+    <main>
+        <!-- Login Section -->
+        <section id="login">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form onsubmit="event.preventDefault(); showUserType();">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Home Page After Login -->
+        <section id="home-page" style="display: none;">
+            <h2>Welcome to the Room Rental Website</h2>
+            <div class="home-options">
+                <div class="option renter-option">
+                    <h3>Renter</h3>
+                    <p>Browse available rooms.</p>
+                    <button onclick="selectRenter()">View Rooms</button>
+                </div>
+                <div class="option owner-option">
+                    <h3>Owner</h3>
+                    <p>List your room for rent.</p>
+                    <button onclick="selectOwner()">List Your Room</button>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About Us</a> |
+                <a href="contact.html">Contact Us</a> |
+                <a href="feedback.html">Feedback</a>
+            </div>
+        </section>
+
+        <!-- Renter Listings Section -->
+        <section id="renter-list" style="display: none;">
+            <h2>Available Listings</h2>
+            <div class="listing">
+                <h3>Room by Raju</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('Raju', 'raju@example.com', '123-456-7890', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by Rohan</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('Rohan', 'rohan@example.com', '987-654-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by shubham</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('shubham', 'shubham@example.com', '098-456-7890', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by ramu</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('ramu', 'ramu@example.com', '987-213-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by sham</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('sham', 'sham@example.com', '123-456-987', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by tejas</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('tejas', 'tejas@example.com', '987-435-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by Joshi</h3>
+                <p>Location: Downtown</p>
+                <p>Price: 2000/month</p>
+                <button onclick="redirectToOwnerInfo('Joshi', 'Joshi@example.com', '123-000-7890', 'Downtown Room', 'A cozy room in downtown with a great view.')">Contact Owner</button>
+            </div>
+            <div class="listing">
+                <h3>Room by Varma</h3>
+                <p>Location: Park Area</p>
+                <p>Price: 1600/month</p>
+                <button onclick="redirectToOwnerInfo('Varma', 'Varma@example.com', '987-098-3210', 'Park Room', 'Spacious room near the park.')">Contact Owner</button>
+            </div>
+        </section>
+
+        <!-- Owner Room Listing Form -->
+        <section id="owner-form" style="display: none;">
+           
+            <div class="form-container">
+                <h2>Submit Your Room Information</h2>
+                <form id="owner-form" onsubmit="event.preventDefault(); submitRoomInfo();">
+                    <label for="ownerName">Owner Name</label>
+                    <input type="text" id="ownerName" name="ownerName" placeholder="Enter your name" required>
+    
+                    <label for="contactNumber">Contact Number</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter contact number" required>
+    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email" required>
+    
+                    <label for="roomTitle">Room Title</label>
+                    <input type="text" id="roomTitle" name="roomTitle" placeholder="Enter room title" required>
+    
+                    <label for="roomDescription">Room Description</label>
+                    <textarea id="roomDescription" name="roomDescription" placeholder="Describe the room" required></textarea>
+    
+                    <label for="roomPrice">Room Price</label>
+                    <input type="number" id="roomPrice" name="roomPrice" placeholder="Enter room price" required>
+    
+                    <label for="roomImage">Room Image URL</label>
+                    <input type="text" id="roomImage" name="roomImage" placeholder="Enter image URL" required>
+    
+                    <label for="roomUpload">Upload Room Image</label>
+                    <input type="file" id="roomUpload" name="roomUpload" accept="image/*">
+    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            </div>
+        </section>
+
+        <!-- Owner Submission Confirmation Page -->
+        <section id="submission-confirmation" style="display: none;">
+            <h2>Room Listed Successfully!</h2>
+            <p>Your room has been listed. Thank you!</p>
+            <button onclick="window.location.href='index.html'">Back to Home</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Room Rental Website</p>
+    </footer>
+
+    <script>
+        function submitRoom() {
+            document.getElementById('owner-form').style.display = 'none';
+            document.getElementById('submission-confirmation').style.display = 'block';
+        }
+    </script>
+
+<style>
+    /* Additional CSS for the owner form */
+    .form-container {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"], 
+    input[type="email"], 
+    input[type="tel"], 
+    input[type="number"], 
+    textarea, 
+    input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px; /* Added spacing for better layout */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</body>
+</html>
